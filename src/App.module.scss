@@ -1,0 +1,25 @@
+.finder {
+  @apply flex justify-between bg-transparent items-center h-screen px-[20px];
+
+  .leftSection {
+    @apply flex gap-[12px] items-center;
+
+    > h1 {
+      @apply text-white font-bold;
+    }
+
+    p {
+      @apply text-white;
+    }
+
+    .contextMenu {
+      @apply flex gap-[4px];
+    }
+  }
+
+  .rightSection {
+    > p {
+      @apply text-white;
+    }
+  }
+}
