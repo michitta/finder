@@ -1,0 +1,7 @@
+.dock {
+  @apply p-[4px] h-screen bg-transparent flex gap-[4px] rounded-xl items-center justify-center w-fit border border-zinc-50 min-w-12;
+
+  .element {
+    @apply w-[44px] h-[44px] bg-black rounded-lg;
+  }
+}

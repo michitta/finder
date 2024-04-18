@@ -12,11 +12,35 @@
     "windows": [
       {
         "title": "finder",
+        "label": "main",
         "skipTaskbar": true,
         "shadow": false,
         "decorations": false,
         "resizable": false,
-        "transparent": true
+        "transparent": true,
+        "alwaysOnTop": true
+      },
+      {
+        "label": "layout",
+        "title": "layout",
+        "skipTaskbar": true,
+        "shadow": false,
+        "decorations": false,
+        "resizable": false,
+        "transparent": true,
+        "visible": false,
+        "url": "layout.html"
+      },
+      {
+        "label": "dock",
+        "title": "dock",
+        "skipTaskbar": true,
+        "shadow": false,
+        "decorations": false,
+        "resizable": false,
+        "transparent": true,
+        "visible": false,
+        "url": "dock.html"
       }
     ],
     "security": {

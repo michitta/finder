@@ -2,7 +2,7 @@
   "$schema": "../gen/schemas/desktop-schema.json",
   "identifier": "default",
   "description": "Capability for the main window",
-  "windows": ["main"],
+  "windows": ["main", "layout", "dock"],
   "permissions": [
     "path:default",
     "event:default",
@@ -12,6 +12,10 @@
     "resources:default",
     "menu:default",
     "tray:default",
-    "shell:allow-open"
+    "shell:allow-open",
+    "window:allow-show",
+    "window:allow-create",
+    "window:allow-set-position",
+    "window:allow-close"
   ]
 }
