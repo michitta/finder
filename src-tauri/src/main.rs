@@ -54,10 +54,16 @@ fn main() {
         .plugin(tauri_plugin_shell::init())
         .setup(|app| {
             let finder = app.get_webview_window("main").unwrap();
+            let layout = app.get_webview_window("layout").unwrap();
             // let dock = app.get_webview_window("dock").unwrap();
 
             let window_width = app.primary_monitor().unwrap().unwrap().size().width as i32;
             // let window_height = app.primary_monitor().unwrap().unwrap().size().height as i32;
+
+            // Configure layout
+            layout
+                .set_effects(EffectsBuilder::new().clear_effects().build())
+                .unwrap();
 
             // Configure finder
             finder

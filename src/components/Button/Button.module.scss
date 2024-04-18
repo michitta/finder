@@ -1,7 +1,7 @@
 .button {
-  @apply px-3 py-2 rounded-lg transition-colors text-base leading-3;
+  @apply px-[12px] py-2 rounded-lg transition-colors text-base leading-3 text-white;
 
   &:hover {
-    @apply bg-slate-200;
+    @apply bg-gray-400;
   }
 }

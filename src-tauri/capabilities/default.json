@@ -16,6 +16,7 @@
     "window:allow-show",
     "window:allow-create",
     "window:allow-set-position",
-    "window:allow-close"
+    "window:allow-close",
+    "window:allow-hide"
   ]
 }
