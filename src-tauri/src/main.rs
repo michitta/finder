@@ -11,7 +11,9 @@ use tauri::{
 use windows_sys::Win32::{
     Foundation::{HWND, RECT},
     UI::{
-        Shell::{SHAppBarMessage, ABE_TOP, ABM_NEW, ABM_REMOVE, ABM_SETPOS, APPBARDATA},
+        Shell::{
+            SHAppBarMessage, ABE_BOTTOM, ABE_TOP, ABM_NEW, ABM_REMOVE, ABM_SETPOS, APPBARDATA,
+        },
         WindowsAndMessaging::{FindWindowA, ShowWindow},
     },
 };
@@ -55,10 +57,10 @@ fn main() {
         .setup(|app| {
             let finder = app.get_webview_window("main").unwrap();
             let layout = app.get_webview_window("layout").unwrap();
-            // let dock = app.get_webview_window("dock").unwrap();
+            let dock = app.get_webview_window("dock").unwrap();
 
             let window_width = app.primary_monitor().unwrap().unwrap().size().width as i32;
-            // let window_height = app.primary_monitor().unwrap().unwrap().size().height as i32;
+            let window_height = app.primary_monitor().unwrap().unwrap().size().height as i32;
 
             // Configure layout
             layout
@@ -120,31 +122,31 @@ fn main() {
             });
 
             // Configure dock
-            // dock.set_effects(EffectsBuilder::new().effect(Effect::Acrylic).build())
-            //     .unwrap();
-            // let dock_hwnd = dock.hwnd().unwrap().0 as HWND;
-            // let dock_rc = register_app_bar(
-            //     dock_hwnd,
-            //     true,
-            //     RECT {
-            //         left: 0,
-            //         top: 56,
-            //         right: 3440,
-            //         bottom: 0,
-            //     },
-            //     ABE_BOTTOM as u32,
-            // );
-            // dock.set_size(Size::Physical(PhysicalSize {
-            //     width: (dock_rc.right - dock_rc.left) as u32,
-            //     height: 56 + 8,
-            // }))
-            // .unwrap();
+            dock.set_effects(EffectsBuilder::new().effect(Effect::Acrylic).build())
+                .unwrap();
+            let dock_hwnd = dock.hwnd().unwrap().0 as HWND;
+            let dock_rc = register_app_bar(
+                dock_hwnd,
+                true,
+                RECT {
+                    left: 0,
+                    top: 56,
+                    right: 3440,
+                    bottom: 0,
+                },
+                ABE_BOTTOM as u32,
+            );
+            dock.set_size(Size::Physical(PhysicalSize {
+                width: (dock_rc.right - dock_rc.left) as u32,
+                height: 56 + 8,
+            }))
+            .unwrap();
 
-            // dock.set_position(Position::Physical(PhysicalPosition {
-            //     x: 0,
-            //     y: window_height - 56 - 8,
-            // }))
-            // .unwrap();
+            dock.set_position(Position::Physical(PhysicalPosition {
+                x: 0,
+                y: window_height - 56 - 8,
+            }))
+            .unwrap();
 
             // Hide taskbar
             // unsafe {

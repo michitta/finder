@@ -9,7 +9,7 @@ export function spawnLayout() {
       layoutWindow.hide();
     } else {
       layoutWindow.show();
-      layoutWindow.setPosition(new LogicalPosition(0, 40));
+      layoutWindow.setPosition(new LogicalPosition(4, 44));
     }
   });
 }
