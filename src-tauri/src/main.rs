@@ -19,15 +19,11 @@ use windows_sys::Win32::{
 };
 use wineventhook::{raw_event, EventFilter, WindowEventHook};
 
+use crate::application::get_all_applications;
 use crate::window::get_window_name;
 
+mod application;
 mod window;
-
-// Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-#[tauri::command]
-fn greet(name: &str) -> String {
-    format!("Hello, {}! You've been greeted from Rust!", name)
-}
 
 fn register_app_bar(window_handle: HWND, register: bool, rc: RECT, u_edge: u32) -> RECT {
     let mut abd = APPBARDATA {
@@ -52,6 +48,11 @@ fn register_app_bar(window_handle: HWND, register: bool, rc: RECT, u_edge: u32) 
 }
 
 fn main() {
+    let applications = get_all_applications();
+    for (name, path) in applications {
+        println!("Name: {}, Path: {}", name, path);
+    }
+
     tauri::Builder::default()
         .plugin(tauri_plugin_shell::init())
         .setup(|app| {
@@ -156,7 +157,7 @@ fn main() {
 
             Ok(())
         })
-        .invoke_handler(tauri::generate_handler![greet])
+        .invoke_handler(tauri::generate_handler![])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
